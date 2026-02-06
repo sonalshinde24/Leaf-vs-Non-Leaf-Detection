@@ -1,3 +1,5 @@
+import os
+import gdown
 import streamlit as st
 import numpy as np
 from PIL import Image
@@ -144,9 +146,15 @@ h1 {
 # --------------------------------------------------
 # LOAD MODEL
 # --------------------------------------------------
+MODEL_PATH = "leaf_vs_non_leaf_model.keras"
+MODEL_URL = "https://drive.google.com/uc?id=1YXocLE0aXa0c_BWMD_HiL6ehWxMVTpCZ"
+
 @st.cache_resource
 def load_leaf_model():
-    return load_model("leaf_vs_non_leaf_model.keras")
+    if not os.path.exists(MODEL_PATH):
+        with st.spinner("Downloading model..."):
+            gdown.download(MODEL_URL, MODEL_PATH, quiet=False)
+    return load_model(MODEL_PATH)
 
 model = load_leaf_model()
 
@@ -220,3 +228,4 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
