@@ -147,16 +147,18 @@ h1 {
 # LOAD MODEL
 # --------------------------------------------------
 MODEL_PATH = "leaf_vs_non_leaf_model.keras"
-MODEL_URL = "https://drive.google.com/uc?id=1YXocLE0aXa0c_BWMD_HiL6ehWxMVTpCZ"
+MODEL_ID = "1YXocLE0aXa0c_BWMD_HiL6ehWxMVTpCZ"
 
 @st.cache_resource
 def load_leaf_model():
     if not os.path.exists(MODEL_PATH):
         with st.spinner("Downloading model..."):
-            gdown.download(MODEL_URL, MODEL_PATH, quiet=False)
+            gdown.download(
+                id=MODEL_ID,
+                output=MODEL_PATH,
+                quiet=False
+            )
     return load_model(MODEL_PATH)
-
-model = load_leaf_model()
 
 IMG_SIZE = 224
 
@@ -228,4 +230,5 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
