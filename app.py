@@ -159,6 +159,8 @@ def load_leaf_model():
                 quiet=False
             )
     return load_model(MODEL_PATH)
+    
+model = load_leaf_model()
 
 IMG_SIZE = 224
 
@@ -230,6 +232,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
 
 
