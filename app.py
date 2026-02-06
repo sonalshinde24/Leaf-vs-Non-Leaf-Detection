@@ -165,7 +165,7 @@ IMG_SIZE = 224
 # --------------------------------------------------
 # PREDICTION
 # --------------------------------------------------
-def predict_image(img):
+def predict_image(img, model):
     img = img.resize((IMG_SIZE, IMG_SIZE))
     arr = np.array(img) / 255.0
     arr = np.expand_dims(arr, axis=0)
@@ -201,7 +201,7 @@ st.markdown("</div>", unsafe_allow_html=True)
 # --------------------------------------------------
 if uploaded_file:
     img = Image.open(uploaded_file).convert("RGB")
-    label, confidence = predict_image(img)
+    label, confidence = predict_image(img, model)
 
     st.markdown("<div class='card'>", unsafe_allow_html=True)
 
@@ -230,5 +230,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
 
