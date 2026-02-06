@@ -1,5 +1,5 @@
 import os
-import gdown
+import requests
 import streamlit as st
 import numpy as np
 from PIL import Image
@@ -153,12 +153,17 @@ MODEL_ID = "1YXocLE0aXa0c_BWMD_HiL6ehWxMVTpCZ"
 def load_leaf_model():
     if not os.path.exists(MODEL_PATH):
         with st.spinner("Downloading model..."):
-            gdown.download(
-                id=MODEL_ID,
-                output=MODEL_PATH,
-                quiet=False,
-                fuzzy=True
-            )
+            url = f"https://drive.google.com/uc?export=download&id={MODEL_ID}"
+            response = requests.get(url, stream=True)
+
+            if response.status_code != 200:
+                st.error("Failed to download model from Google Drive.")
+                st.stop()
+
+            with open(MODEL_PATH, "wb") as f:
+                for chunk in response.iter_content(chunk_size=8192):
+                    if chunk:
+                        f.write(chunk)
 
     return load_model(MODEL_PATH)
     
@@ -234,6 +239,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
 
 
