@@ -156,8 +156,10 @@ def load_leaf_model():
             gdown.download(
                 id=MODEL_ID,
                 output=MODEL_PATH,
-                quiet=False
+                quiet=False,
+                fuzzy=True
             )
+
     return load_model(MODEL_PATH)
     
 model = load_leaf_model()
@@ -232,6 +234,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
 
 
