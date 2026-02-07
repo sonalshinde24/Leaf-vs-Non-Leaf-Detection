@@ -89,4 +89,17 @@ A **Streamlit-based UI** is used for real-time prediction.
 git clone https://github.com/your-username/Leaf-vs-Non-Leaf-Detection.git
 cd Leaf-vs-Non-Leaf-Detection
 ```
+📊 Results
 
+- High accuracy in distinguishing leaf vs non-leaf images
+- Robust performance on unseen images
+- Lightweight and deployable model
+
+---
+
+📌 Future Improvements
+- Add multi-class leaf classification
+- Integrate plant disease detection
+- Deploy as a cloud-based web application
+- Improve accuracy using transfer learning (ResNet, MobileNet)
+---
